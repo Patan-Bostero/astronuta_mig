@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img id="astro" src="./astronauta.webp" alt="">
+
+    <div class="container-buttons">
+        <button id="move">Mover</button>
+        <button id="color">Colorear</button>
+        <button id="float">Flotar</button>
+    </div>
+  </body>
+<script>
+    const astro = document.getElementById('astro');
+    const space = document.getElementById('space');
+    const move = document.getElementById('move');
+    const color = document.getElementById('color');
+    const float = document.getElementById('float');
+    
+    let isMoveActive = true;
+
+    
+    function desplazarDerecha() {
+      astro.style.left = `${parseInt(astro.style.left || '50') + 700}px`;
+      astro.style.transform = "scale(0.6)";
+    }
+
+    function hacerMasPequeno() {
+      astro.style.transform = "scale(0.6)";
+    }
+
+    function hacerMasGrande() {
+      astro.style.transform = "scale(1.2)";
+    }
+
+    function volverPosicionInicial() {
+      astro.style.left = '50px';
+      astro.style.transform = "scale(1.2)";
+    }
+
+    function posicionarArriba() {
+      astro.style.top = '10px';
+    }
+
+    function cambiarFondo() {
+      space.style.backgroundColor = "#420a8d";
+    }
+
+    
+    window.addEventListener('keydown', function(event) {
+      if (event.key === ' ') { 
+        desplazarDerecha();
+      }
+      if (event.key === 'Enter') {
+        alert("Hello Space!");
+      }
+      if (event.key === 'r') {
+        isMoveActive = false; 
+        move.disabled = true;
+      }
+    });
+
+    
+    move.addEventListener('click', function() {
+      if (isMoveActive) {
+        volverPosicionInicial();
+      }
+    });
+
+    color.addEventListener('click', function() {
+      cambiarFondo();
+    });
+
+    float.addEventListener('click', function() {
+      posicionarArriba();
+    });
+
+    move.addEventListener('mousedown', function() {
+      if (isMoveActive) {
+        desplazarDerecha();
+      }
+    });
+
+    move.addEventListener('mouseup', function() {
+      astro.style.transform = "scale(1.2)";
+    });
+  </script>
+</html>
